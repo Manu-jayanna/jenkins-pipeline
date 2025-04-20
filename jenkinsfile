@@ -1,5 +1,7 @@
 pipeline{
-    agent any
+    agent{
+        label 'slave1'
+    }
 
     stages{
 
@@ -7,6 +9,7 @@ pipeline{
             steps{
 
                 echo "This is a checkout stage"
+                sleep 20
             }
         }
 
@@ -14,6 +17,7 @@ pipeline{
             steps{
 
                 echo "This is a Build stage"
+                sleep 10
             }
         }
 
@@ -21,6 +25,7 @@ pipeline{
             steps{
 
                 echo "This is a Test stage"
+                sleep 5
             }
         }
 
