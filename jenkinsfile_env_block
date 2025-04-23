@@ -1,9 +1,9 @@
 pipeline{
     agent none
-    APP='frontend'
-    SER='Production'
-
-
+    environment{
+         APP='frontend'
+         SER='Production'
+    }
     stages{
 
         stage('checkout'){
