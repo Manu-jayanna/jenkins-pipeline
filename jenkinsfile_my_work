@@ -3,7 +3,12 @@ pipeline {
     stages {
         stage('check env list'){
             steps{
-                echo "${env.ENV}"
+                script {
+                    echo "Available Environment Variables:"
+                    env.each { key, value ->
+                        echo "${key}=${value}"
+                    }
+                }
             }
         }
         stage('Checkout') {
@@ -14,7 +19,7 @@ pipeline {
         stage('Build and Test') {
             steps {
                 script {
-                    if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'release/*') {
+                    if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME.startsWith('release/')) {
                         echo "Running full build and integration tests for ${env.BRANCH_NAME}"
                         // ... full build and integration tests ...
                     } else if (env.BRANCH_NAME.startsWith('feature/')) {
