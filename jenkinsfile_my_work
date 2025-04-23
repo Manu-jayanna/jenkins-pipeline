@@ -1,9 +1,11 @@
 pipeline {
     agent any
-    environment{
-        echo "$env"
-    }
     stages {
+        stage('check env list'){
+            steps{
+                echo "$ENV"
+            }
+        }
         stage('Checkout') {
             steps {
                 checkout scm
