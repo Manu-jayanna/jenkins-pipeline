@@ -14,9 +14,9 @@ pipeline{
             }
         }
         stage('Parallel Build'){
-            agent any
             parallel{
                 stage('Build-1'){
+                    agent any
                     steps{
                         echo "This is a Build 1"
                     }
