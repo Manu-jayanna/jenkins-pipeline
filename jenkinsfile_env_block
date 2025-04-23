@@ -1,0 +1,50 @@
+pipeline{
+    agent none
+    APP='frontend'
+    ENV='Production'
+
+    stages{
+
+        stage('checkout'){
+            agent{
+                label 'slave2'
+            }
+            steps{
+
+                echo "APP_type : ${env.APP} ENV_type : ${env.ENV}"
+                echo "This is a checkout stage"
+                sleep 20
+            }
+        }
+        stage('Parallel Build'){
+            parallel{
+                stage('Build-1'){
+                    agent any
+                    steps{
+                        echo "This is a Build 1"
+                        sh "sleep 5"
+                    }
+                }
+
+                stage('Build-2'){
+                    agent {
+                        label 'slave1'
+                    }
+                    steps{
+                        echo "This is a Build 2"
+                        sh "sleep 5"
+                    }
+                }
+            }    
+        }
+        stage('Test'){
+            steps{
+
+                echo "This is a Test stage"
+                sleep 5
+            }
+        }
+
+    }
+    
+}
