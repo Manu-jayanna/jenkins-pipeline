@@ -1,7 +1,8 @@
 pipeline{
     agent none
     APP='frontend'
-    ENV='Production'
+    SER='Production'
+
 
     stages{
 
@@ -11,7 +12,7 @@ pipeline{
             }
             steps{
 
-                echo "APP_type : ${env.APP} ENV_type : ${env.ENV}"
+                echo "APP_type : ${env.APP} ENV_type : ${env.SER}"
                 echo "This is a checkout stage"
                 sleep 20
             }
