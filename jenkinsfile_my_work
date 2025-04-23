@@ -3,11 +3,8 @@ pipeline {
     stages {
         stage('check env list'){
             steps{
-                script {
-                    echo "Available Environment Variables:"
-                    env.each { key, value ->
-                        echo "${key}=${value}"
-                    }
+                sh "$ENV"
+               
                 }
             }
         }
