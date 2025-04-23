@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('check env list'){
             steps{
-                echo "$ENV"
+                echo "${env.ENV}"
             }
         }
         stage('Checkout') {
