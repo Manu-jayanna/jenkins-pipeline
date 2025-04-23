@@ -14,7 +14,7 @@ pipeline{
 
                 echo "APP_type : ${env.APP} ; ENV_type : ${env.SER}"
                 echo "This is a checkout stage"
-                sleep 20
+                sleep 5
             }
         }
         stage('Parallel Build'){
@@ -39,8 +39,16 @@ pipeline{
             }    
         }
         stage('Test'){
+            environment{
+                APP='Backend'
+                SER='Testing'
+            }
+            
             steps{
 
+                script{
+                    echo "$APP ; $SER"
+                }
                 echo "This is a Test stage"
                 sleep 5
             }
