@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    environment{
+        echo "$env"
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build and Test') {
+            steps {
+                script {
+                    if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'release/*') {
+                        echo "Running full build and integration tests for ${env.BRANCH_NAME}"
+                        // ... full build and integration tests ...
+                    } else if (env.BRANCH_NAME.startsWith('feature/')) {
+                        echo "Running quick build and unit tests for feature branch ${env.BRANCH_NAME}"
+                        // ... quick build and unit tests ...
+                    } else {
+                        echo "Skipping extensive tests for branch ${env.BRANCH_NAME}"
+                        // ... basic build steps ...
+                    }
+                }
+            }
+        }
+        // ... other stages ...
+    }
+}
