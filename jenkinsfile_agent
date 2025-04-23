@@ -1,12 +1,12 @@
 pipeline{
-    agent{
-
-        label 'slave2'
-    }
+    agent none
 
     stages{
 
         stage('checkout'){
+            agent{
+                label 'slave1'
+            }
             steps{
 
                 echo "This is a checkout stage"
@@ -15,6 +15,9 @@ pipeline{
         }
 
         stage('Build'){
+            agent{
+                label 'slave2'
+            }
             steps{
 
                 echo "This is a Build stage"
@@ -23,6 +26,7 @@ pipeline{
         }
 
         stage('Test'){
+            agent any
             steps{
 
                 echo "This is a Test stage"
