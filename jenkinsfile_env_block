@@ -12,7 +12,7 @@ pipeline{
             }
             steps{
 
-                echo "APP_type : ${env.APP} ENV_type : ${env.SER}"
+                echo "APP_type : ${env.APP} ; ENV_type : ${env.SER}"
                 echo "This is a checkout stage"
                 sleep 20
             }
