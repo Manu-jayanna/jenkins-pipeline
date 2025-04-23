@@ -13,15 +13,21 @@ pipeline{
                 sleep 20
             }
         }
+        stage('Parallel Build'){
+            parallel{
+                stage('Build-1'){
+                    steps{
+                        echo "This is a Build 1"
+                    }
+                }
 
-        stage('Build'){
-            steps{
-
-                echo "This is a Build stage"
-                sleep 10
-            }
+                stage('Build-2'){
+                    steps{
+                        echo "This is a Build 2"
+                    }
+                }
+            }    
         }
-
         stage('Test'){
             steps{
 
