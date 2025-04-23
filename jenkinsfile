@@ -1,0 +1,32 @@
+// Basic Declarative pipeline Skeleton
+
+pipeline{
+    agent any
+
+    stages{
+
+        stage('checkout'){
+            steps{
+
+                echo "This is a checkout stage"
+                sleep 20
+            }
+        }
+        stage('Build'){
+            steps{
+                 echo "This is a Build 1"
+                 sh "sleep 5"
+             }
+        }
+
+        stage('Test'){
+            steps{
+
+                echo "This is a Test stage"
+                sleep 5
+            }
+        }
+
+    }
+
+}
