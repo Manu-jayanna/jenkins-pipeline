@@ -29,7 +29,7 @@ pipeline{
                 sh '''
                    echo "shell ------> ${Build}"
                 sleep 3
-                }
+            }
         }
                 
         stage('Deploy'){
