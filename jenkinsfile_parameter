@@ -16,7 +16,7 @@ pipeline{
                    echo "Groovy ----> ${params.Branch_name}" 
                 }
                 sh '''
-                   echo "shell ------> ${Branch_name}"
+                   echo "shell ------> $Branch_name"
                 sleep 3
                 '''
             }
@@ -29,7 +29,7 @@ pipeline{
                    echo "Groovy ----> ${params.Build}" 
                 }
                 sh '''
-                   echo "shell ------> ${Build}"
+                   echo "shell ------> $Build"
                 sleep 3
                 '''
             }
@@ -44,7 +44,7 @@ pipeline{
                    echo "Groovy ----> ${params.Select_env}" 
                 }
                 sh '''
-                   echo "shell ------> ${Select_env}"
+                   echo "shell ------> $Select_env"
                 sleep 3
                 '''
 
