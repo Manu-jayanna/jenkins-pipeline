@@ -22,7 +22,7 @@ pipeline{
         }
         stage('Build'){
             steps{
-                 echo "Groovy ----> ${params.Build}"
+                echo "Groovy ----> ${params.Build}"
                 script{
                    echo "Groovy ----> ${params.Build}" 
                 }
@@ -32,10 +32,11 @@ pipeline{
                 }
         }
                 
-        stage('Test'){
+        stage('Deploy'){
+
             steps{
 
-                   echo "Groovy ----> ${params.Select_env}"
+                echo "Groovy ----> ${params.Select_env}"
                 script{
                    echo "Groovy ----> ${params.Select_env}" 
                 }
