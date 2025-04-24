@@ -18,9 +18,11 @@ pipeline{
                 sh '''
                    echo "shell ------> ${Branch_name}"
                 sleep 3
+                '''
             }
         }
         stage('Build'){
+
             steps{
                 echo "Groovy ----> ${params.Build}"
                 script{
@@ -29,6 +31,7 @@ pipeline{
                 sh '''
                    echo "shell ------> ${Build}"
                 sleep 3
+                '''
             }
         }
                 
@@ -43,6 +46,7 @@ pipeline{
                 sh '''
                    echo "shell ------> ${Select_env}"
                 sleep 3
+                '''
 
             }
         }
