@@ -17,7 +17,7 @@ pipeline{
         }
         stage('Build'){
             when{
-                branch 'main'
+                branch 'production'
             }
 
             steps{
