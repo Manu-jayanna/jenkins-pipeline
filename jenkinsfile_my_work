@@ -1,32 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('check env list'){
-            steps{
-                sh "$ENV"
-               
-                }
-            }
-        stage('Checkout') {
+        stage('Example Build') {
             steps {
-                checkout scm
+                echo 'Hello World'
             }
         }
-        stage('Build and Test') {
+        stage('Example Deploy') {
+            when {
+                branch 'production'
+                environment name: 'DEPLOY_TO', value: 'production'
+            }
             steps {
-                script {
-                    if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME.startsWith('release/')) {
-                        echo "Running full build and integration tests for ${env.BRANCH_NAME}"
-                        // ... full build and integration tests ...
-                    } else if (env.BRANCH_NAME.startsWith('feature/')) {
-                        echo "Running quick build and unit tests for feature branch ${env.BRANCH_NAME}"
-                        // ... quick build and unit tests ...
-                    } else {
-                        echo "Skipping extensive tests for branch ${env.BRANCH_NAME}"
-                        // ... basic build steps ...
-                    }
-                }
+                echo 'Deploying'
             }
         }
-    }    // ... other stages ...
+    }
 }
