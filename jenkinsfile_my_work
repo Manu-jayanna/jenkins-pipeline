@@ -1,18 +1,45 @@
 pipeline {
     agent any
+    parameters {
+        choice(name: 'BRANCH', choices: ['main','production'], description: 'Choose the environment to deploy ?')
+    }
+
     stages {
-        stage('Example Build') {
+        stage('CHECKOUT') {
             steps {
-                echo 'Hello World'
+                checkout scmGit(branches: [[name: '*/main']], 
+                extensions: [], 
+                userRemoteConfigs: [[credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/jenkins-pipeline.git']])
             }
         }
-        stage('Example Deploy') {
+
+        stage('BUILD_MAIN') {
+
             when {
-                branch 'main'
-                // environment name: 'DEPLOY_TO', value: 'dev'
+                expression { 
+                    return params.BRANCH == 'main' && 
+                    return params.BRANCH != 'test'    
+                }
             }
+
             steps {
-                echo 'Deploying'
+                sh '''
+                    echo "SHELL ----> BRNACH: ${BRANCH}"
+                    sudo apt update
+                '''
+            }
+        }
+
+        stage('BUILD_PROD') {
+
+            when {
+                expression { return params.BRNACH == 'production' }
+            }
+
+            steps {
+                sh '''
+                    echo "SHELL ----> BRNACH: ${BRANCH}"
+                '''
             }
         }
     }
