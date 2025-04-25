@@ -27,7 +27,7 @@ pipeline{
                 }
                 sh '''
                    echo "shell ------> $Build"
-                sleep 2
+                sleep 3
                 '''
             }
         }
