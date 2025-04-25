@@ -1,0 +1,53 @@
+pipeline{
+    agent any
+    parameters{
+        booleanParam defaultValue: true, description: 'Whether to deploy or not?', name: 'Build'
+        choice choices: ['dev', 'test', 'Stagging', 'production'], description: 'Select env to deploy.', name: 'Select_env'
+        string defaultValue: 'main', description: 'select proper branch ', name: 'Branch_name', trim: true
+    }
+
+    stages{
+
+        stage('checkout'){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], 
+                extensions: [], 
+                userRemoteConfigs: [[credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/jenkins-pipeline.git']])
+            }
+        }
+        stage('Build'){
+            when{
+                Branch_name 'main'
+            }
+
+            steps{
+                echo "Groovy ----> ${params.Build}"
+                script{
+                   echo "Groovy ----> ${params.Build}" 
+                }
+                sh '''
+                   echo "shell ------> $Build"
+                sleep 3
+                '''
+            }
+        }
+                
+        stage('Deploy'){
+
+            steps{
+
+                echo "Groovy ----> ${params.Select_env}"
+                script{
+                   echo "Groovy ----> ${params.Select_env}" 
+                }
+                sh '''
+                   echo "shell ------> $Select_env"
+                sleep 3
+                '''
+
+            }
+        }
+
+    }
+    
+}
