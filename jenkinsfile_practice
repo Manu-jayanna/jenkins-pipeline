@@ -25,7 +25,6 @@ pipeline{
            
             steps{
                 
-                }
                 echo "Groovy ----> ${params.ENV}"
                 sh '''
                    echo "shell ------> ${ENV}"
@@ -51,4 +50,4 @@ pipeline{
             }
         }
     }
-}
+}    
