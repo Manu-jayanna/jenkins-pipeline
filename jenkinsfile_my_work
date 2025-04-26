@@ -8,7 +8,7 @@ pipeline {
     }
 
     stages {
-        stage('CHECKOUT') {
+        stage('CHECKOUT1') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], 
                 extensions: [], 
@@ -61,11 +61,11 @@ pipeline {
         }
     }
     stages {
-        stage('CHECKOUT') {
+        stage('CHECKOUT2') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], 
                 extensions: [], 
-                userRemoteConfigs: [[credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/jenkins-pipeline.git']])
+                userRemoteConfigs: [[credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/Repo.git']])
             }
         }
 
