@@ -15,7 +15,7 @@ pipeline{
             
             steps{
                 
-                echo "Groovy ----> ${params.ENV}"
+                echo "Groovy ----> ${param.ENV}"
                 sh '''
                    echo "shell ------> ${ENV}"
                 '''
