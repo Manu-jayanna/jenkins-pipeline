@@ -1,9 +1,8 @@
 pipeline{
     agent any
     parameters{
-        booleanParam defaultValue: true, description: 'Whether to deploy or not?', name: 'Build'
-        choice choices: ['dev', 'test', 'Stagging', 'production'], description: 'Select env to deploy.', name: 'Select_env'
-        string defaultValue: 'main', description: 'select proper branch ', name: 'Branch_name', trim: true
+        
+        choice choices: ['dev', 'test', 'Stagging', 'production'], description: 'Select env to deploy.', name: 'ENV'
     }
 
     stages{
@@ -17,55 +16,27 @@ pipeline{
         }
         stage('Build1'){
             when{
-                branch 'main'
-                // environment name: 'DEPLOY_TO', value: 'main'
+                expression{return params.ENV == 'dev'}
             }
 
             steps{
-                echo "Groovy ----> ${params.Build}"
-                script{
-                   echo "Groovy ----> ${params.Build}" 
-                }
+                echo "Groovy ----> ${params.ENV}"
                 sh '''
-                   echo "shell ------> $Build"
-                sleep 3
+                   echo "shell ------> ${ENV}"
                 '''
             }
         }
         stage('Build2'){
             when{
-                branch 'production'
-                // environment name: 'DEPLOY_TO', value: 'main'
+                expression{return params.ENV == 'stagging'}
             }
 
             steps{
-                echo "Groovy ----> ${params.Build}"
-                script{
-                   echo "Groovy ----> ${params.Build}" 
-                }
+                echo "Groovy ----> ${params.ENV}"
                 sh '''
-                   echo "shell ------> $Build"
-                sleep 3
+                   echo "shell ------> ${ENV}"
                 '''
             }
         }
-                
-        stage('Deploy'){
-
-            steps{
-
-                echo "Groovy ----> ${params.Select_env}"
-                script{
-                   echo "Groovy ----> ${params.Select_env}" 
-                }
-                sh '''
-                   echo "shell ------> $Select_env"
-                sleep 3
-                '''
-
-            }
-        }
-
     }
-    
 }
