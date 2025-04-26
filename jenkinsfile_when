@@ -24,15 +24,8 @@ pipeline{
             }
             steps{
                 when{
-<<<<<<< HEAD
                     expression{return params.ENV == 'dev' && params.BUILD}
                          
-=======
-                    allOf{
-                        expression{return params.ENV == 'dev'}
-                        expression{return params.BUILD == true}
-                    }
->>>>>>> 993a8f0c86a260562a3fefd780d3be048e6fd446
                 }
                 echo "Groovy ----> ${params.ENV}"
                 sh '''
@@ -46,16 +39,9 @@ pipeline{
             }
             steps{
                 when{
-<<<<<<< HEAD
                     
                     expression{return params.ENV == 'Stagging'&& params.BUILD}
                     
-=======
-                    allOf{
-                        expression{return params.ENV == 'Stagging'}
-                        expression{return params.BUILD == true}
-                    }
->>>>>>> 993a8f0c86a260562a3fefd780d3be048e6fd446
                 }
                 echo "Groovy ----> ${params.ENV}"
                 sh '''
@@ -69,14 +55,7 @@ pipeline{
             }
             steps{
                 when{
-<<<<<<< HEAD
                     expression{return params.ENV == 'test' && params.BUILD}
-=======
-                    allOf{
-                        expression{return params.ENV == 'test'}
-                        expression{return params.BUILD == true}
-                    }
->>>>>>> 993a8f0c86a260562a3fefd780d3be048e6fd446
                 }
                 echo "Groovy ----> ${params.ENV}"
                 sh '''
@@ -89,16 +68,9 @@ pipeline{
                 label 'slave1'
             }
             when{
-<<<<<<< HEAD
               
                 expression{return params.ENV == 'production' && params.BUILD}
                 
-=======
-                allOf{
-                    expression{return params.ENV == 'production'}
-                    expression{return params.BUILD == true}
-                }
->>>>>>> 993a8f0c86a260562a3fefd780d3be048e6fd446
             }
             steps{
                 echo "Groovy ----> ${params.ENV}"
