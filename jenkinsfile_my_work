@@ -25,7 +25,7 @@ pipeline {
 
             steps {
                 sh '''
-                    echo "SHELL ----> BRNACH: ${BRANCH}"
+                    echo "SHELL ----> BRANCH: ${BRANCH}"
                 '''
             }
         }
