@@ -23,7 +23,7 @@ pipeline{
                 label 'slave2'
             }
             allOf{
-                expression{return params.ENV == 'dev'
+                expression{return params.ENV == 'dev'}
                 expression{return params.BUILD == true}
             }
 
@@ -39,7 +39,7 @@ pipeline{
                 label 'slave2'
             }
             allOf{
-                expression{return params.ENV == 'Stagging'
+                expression{return params.ENV == 'Stagging'}
                 expression{return params.BUILD == true}
             }
 
@@ -55,7 +55,7 @@ pipeline{
                 label 'slave2'
             }
             allOf{
-                expression{return params.ENV == 'test'
+                expression{return params.ENV == 'test'}
                 expression{return params.BUILD == true}
             }
 
@@ -71,7 +71,7 @@ pipeline{
                 label 'slave1'
             }
             allOf{
-                expression{return params.ENV == 'production'
+                expression{return params.ENV == 'production'}
                 expression{return params.BUILD == true}
             }
 
