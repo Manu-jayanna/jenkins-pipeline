@@ -15,9 +15,26 @@ pipeline{
                 userRemoteConfigs: [[credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/jenkins-pipeline.git']])
             }
         }
-        stage('Build'){
+        stage('Build1'){
             when{
                 branch 'main'
+                // environment name: 'DEPLOY_TO', value: 'main'
+            }
+
+            steps{
+                echo "Groovy ----> ${params.Build}"
+                script{
+                   echo "Groovy ----> ${params.Build}" 
+                }
+                sh '''
+                   echo "shell ------> $Build"
+                sleep 3
+                '''
+            }
+        }
+        stage('Build2'){
+            when{
+                branch 'production'
                 // environment name: 'DEPLOY_TO', value: 'main'
             }
 
