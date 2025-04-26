@@ -110,6 +110,9 @@ pipeline{
             }
         }
         stage('checkout3'){
+            agent{
+                label 'slave2'
+            }
             steps{
                 git (branch: 'main', credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/my_repository.git')
             }
