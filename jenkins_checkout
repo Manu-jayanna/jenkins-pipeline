@@ -1,17 +1,17 @@
 pipeline{
-    agent none
-    parameters{
+    agent any
+    // parameters{
     
-        choice(name: 'ENV', choices: ['dev', 'test', 'Stagging', 'production'], description: 'Choose the environment to deploy ?')
-        booleanParam defaultValue: true, description: 'Whether to deploy or not?', name: 'BUILD'
-    }
+    //     choice(name: 'ENV', choices: ['dev', 'test', 'Stagging', 'production'], description: 'Choose the environment to deploy ?')
+    //     booleanParam defaultValue: true, description: 'Whether to deploy or not?', name: 'BUILD'
+    // }
 
     stages{
 
         stage('checkout1'){
-            agent{
-                label 'slave1'
-            }
+            // agent{
+            //     label 'slave1'
+            // }
             steps{
                 checkout scmGit(branches: [[name: '*/main']], 
                 extensions: [], 
@@ -19,73 +19,74 @@ pipeline{
             }
         }
         stage('Build1'){
-            agent{
-                label 'slave2'
-            }
-            when{
-                    expression{return params.ENV == 'dev' && params.BUILD}
+            // agent{
+            //     label 'slave2'
+            // }
+            // when{
+            //         expression{return params.ENV == 'dev' && params.BUILD}
                          
-                }
+            //     }
             steps{
                 
-                echo "Groovy ----> ${params.ENV}"
+                
                 sh '''
-                   echo "shell ------> ${ENV}"
+                   pwd
+                   ls -lrt
                 '''
             }
         }
-        stage('Build2'){
-            agent{
-                label 'slave2'
-            }
-            when{
+        // stage('Build2'){
+        //     // agent{
+        //     //     label 'slave2'
+        //     // }
+        //     // when{
                     
-                    expression{return params.ENV == 'Stagging'&& params.BUILD}
+        //     //         expression{return params.ENV == 'Stagging'&& params.BUILD}
                     
-                }
-            steps{
+        //     //     }
+        //     steps{
                 
-                echo "Groovy ----> ${params.ENV}"
-                sh '''
-                   echo "shell ------> ${ENV}"
-                '''
-            }
-        }
-        stage('Build3'){
-            agent{
-                label 'slave2'
-            }
-            when{
-                    expression{return params.ENV == 'test' && params.BUILD}
-                }
-            steps{
+        //         echo "Groovy ----> ${params.ENV}"
+        //         sh '''
+        //            echo "shell ------> ${ENV}"
+        //         '''
+        //     }
+        // }
+        // stage('Build3'){
+        //     // agent{
+        //     //     label 'slave2'
+        //     // }
+        //     // when{
+        //     //         expression{return params.ENV == 'test' && params.BUILD}
+        //     //     }
+        //     steps{
                 
-                echo "Groovy ----> ${params.ENV}"
-                sh '''
-                   echo "shell ------> ${ENV}"
-                '''
-            }
-        }
-        stage('Build4'){
-            agent{
-                label 'slave1'
-            }
-            when{
+        //         echo "Groovy ----> ${params.ENV}"
+        //         sh '''
+        //            echo "shell ------> ${ENV}"
+        //         '''
+        //     }
+        // }
+        // stage('Build4'){
+        //     // agent{
+        //     //     label 'slave1'
+        //     // }
+        //     // when{
               
-                expression{return params.ENV == 'production' && params.BUILD}
+        //     //     expression{return params.ENV == 'production' && params.BUILD}
                 
-            }
-            steps{
-                echo "Groovy ----> ${params.ENV}"
-                sh '''
-                   echo "shell ------> ${ENV}"
-                '''
-            }
-        }
+        //     // }
+        //     steps{
+        //         echo "Groovy ----> ${params.ENV}"
+        //         sh '''
+        //            echo "shell ------> ${ENV}"
+        //         '''
+        //     }
+        // }
         stage('checkout2'){
-            agent{
-                label 'slave1'
-            }
+            // agent{
+            //     label 'slave1'
+            // }
             steps{
                 checkout scmGit(branches: [[name: '*/main']], 
                 extensions: [], 
@@ -93,13 +94,13 @@ pipeline{
             }
         }
         stage('Build'){
-            agent{
-                label 'slave2'
-            }
-            when{
-                    expression{return params.ENV == 'dev' && params.BUILD}
+            // agent{
+            //     label 'slave2'
+            // }
+            // when{
+            //         expression{return params.ENV == 'dev' && params.BUILD}
                          
-                }
+            //     }
             steps{
                 
                 sh '''
@@ -110,17 +111,17 @@ pipeline{
             }
         }
         stage('checkout3'){
-            agent{
-                label 'slave2'
-            }
+            // agent{
+            //     label 'slave2'
+            // }
             steps{
                 git (branch: 'main', credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/my_repository.git')
             }
         }
         stage('test'){
-             agent{
-                label 'slave2'
-            }
+            //  agent{
+            //     label 'slave2'
+            // }
             steps{
                 sh '''
                    pwd
