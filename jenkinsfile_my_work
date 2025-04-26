@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    parameters {
+
+        choice(name: 'BRANCH', choices: ['main','production'], description: 'Choose the environment to deploy ?')
+        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'wheather to deploy or not ?')
+
+    }
 
     stages {
         stage('CHECKOUT') {
@@ -54,4 +60,41 @@ pipeline {
             }
         }
     }
+    stages {
+        stage('CHECKOUT') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], 
+                extensions: [], 
+                userRemoteConfigs: [[credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/jenkins-pipeline.git']])
+            }
+        }
+
+        stage('BUILD_MAIN') {
+
+            when {
+                expression { 
+                    return params.BRANCH == 'main'  
+                }
+            }
+
+            steps {
+                sh '''
+                    echo "SHELL ----> BRANCH: ${BRANCH}"
+                '''
+            }
+        }
+
+        stage('BUILD_PROD') {
+
+            when {
+                expression { return params.BRANCH == 'production' }
+            }
+
+            steps {
+                sh '''
+                    echo "SHELL ----> BRANCH: ${BRANCH}"
+                '''
+            }
+        }
+    }    
 }
