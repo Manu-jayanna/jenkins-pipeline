@@ -1,0 +1,55 @@
+pipeline{
+    agent any
+    }
+
+    stages{
+
+        stage('checkout'){
+   
+            step{
+                checkout scmGit(branches: [[name: '*/main']], 
+                extensions: [], 
+                userRemoteConfigs: [[credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/jenkins-pipeline.git']])
+            }
+        }
+        stage('Build1'){
+            
+            steps{
+                
+                echo "Groovy ----> ${params.ENV}"
+                sh '''
+                   echo "shell ------> ${ENV}"
+                '''
+            }
+        }
+        stage('Build2'){
+           
+            steps{
+                
+                }
+                echo "Groovy ----> ${params.ENV}"
+                sh '''
+                   echo "shell ------> ${ENV}"
+                '''
+            }
+        }
+        stage('Build3'){
+            
+            steps{
+               
+                echo "Groovy ----> ${params.ENV}"
+                sh '''
+                   echo "shell ------> ${ENV}"
+                '''
+            }
+        }
+        stage('Build4'){
+            steps{
+                echo "Groovy ----> ${params.ENV}"
+                sh '''
+                   echo "shell ------> ${ENV}"
+                '''
+            }
+        }
+    }
+}
