@@ -1,7 +1,9 @@
 pipeline {
     agent any
     parameters {
+        
         choice(name: 'BRANCH', choices: ['main','production'], description: 'Choose the environment to deploy ?')
+
     }
 
     stages {
