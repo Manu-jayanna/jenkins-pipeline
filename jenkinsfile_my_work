@@ -8,6 +8,7 @@ pipeline {
     }
 
     stages {
+        
         stage('CHECKOUT1') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], 
