@@ -22,12 +22,13 @@ pipeline{
             agent{
                 label 'slave2'
             }
-            allOf{
-                expression{return params.ENV == 'dev'}
-                expression{return params.BUILD == true}
-            }
-
             steps{
+                when{
+                    allOf{
+                        expression{return params.ENV == 'dev'}
+                        expression{return params.BUILD == true}
+                    }
+                }
                 echo "Groovy ----> ${params.ENV}"
                 sh '''
                    echo "shell ------> ${ENV}"
@@ -38,12 +39,13 @@ pipeline{
             agent{
                 label 'slave2'
             }
-            allOf{
-                expression{return params.ENV == 'Stagging'}
-                expression{return params.BUILD == true}
-            }
-
             steps{
+                when{
+                    allOf{
+                        expression{return params.ENV == 'Stagging'}
+                        expression{return params.BUILD == true}
+                    }
+                }
                 echo "Groovy ----> ${params.ENV}"
                 sh '''
                    echo "shell ------> ${ENV}"
@@ -54,12 +56,13 @@ pipeline{
             agent{
                 label 'slave2'
             }
-            allOf{
-                expression{return params.ENV == 'test'}
-                expression{return params.BUILD == true}
-            }
-
             steps{
+                when{
+                    allOf{
+                        expression{return params.ENV == 'test'}
+                        expression{return params.BUILD == true}
+                    }
+                }
                 echo "Groovy ----> ${params.ENV}"
                 sh '''
                    echo "shell ------> ${ENV}"
@@ -70,11 +73,12 @@ pipeline{
             agent{
                 label 'slave1'
             }
-            allOf{
-                expression{return params.ENV == 'production'}
-                expression{return params.BUILD == true}
+            when{
+                allOf{
+                    expression{return params.ENV == 'production'}
+                    expression{return params.BUILD == true}
+                }
             }
-
             steps{
                 echo "Groovy ----> ${params.ENV}"
                 sh '''
