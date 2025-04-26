@@ -22,9 +22,9 @@ pipeline{
             agent{
                 label 'slave2'
             }
-            when{
+            allOf{
                 expression{return params.ENV == 'dev'
-                                  && params.BUILD == true}
+                expression{return params.BUILD == true}
             }
 
             steps{
@@ -38,9 +38,9 @@ pipeline{
             agent{
                 label 'slave2'
             }
-            when{
+            allOf{
                 expression{return params.ENV == 'Stagging'
-                                  && params.BUILD == true}
+                expression{return params.BUILD == true}
             }
 
             steps{
@@ -54,9 +54,9 @@ pipeline{
             agent{
                 label 'slave2'
             }
-            when{
+            allOf{
                 expression{return params.ENV == 'test'
-                                  && params.BUILD == true}
+                expression{return params.BUILD == true}
             }
 
             steps{
@@ -70,9 +70,9 @@ pipeline{
             agent{
                 label 'slave1'
             }
-            when{
+            allOf{
                 expression{return params.ENV == 'production'
-                                  && params.BUILD == true}
+                expression{return params.BUILD == true}
             }
 
             steps{
