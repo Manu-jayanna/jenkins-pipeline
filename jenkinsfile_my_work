@@ -59,8 +59,6 @@ pipeline {
                 echo "Groovy ----> Deployed unsuccessfull...!"
             }
         }
-    }
-    stages {
         stage('CHECKOUT2') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], 
@@ -94,6 +92,22 @@ pipeline {
                 sh '''
                     echo "SHELL ----> BRANCH: ${BRANCH}"
                 '''
+            }
+        }
+        stage('Deploy1'){
+            when{
+                expression{return params.DEPLOY == true}
+            }
+            steps{
+                echo "Groovy ----> Deployed successfully...!"
+            }
+        }
+        stage('Deploy2'){
+            when{
+                expression{return params.DEPLOY == false}
+            }
+            steps{
+                echo "Groovy ----> Deployed unsuccessfull...!"
             }
         }
     }    
