@@ -22,11 +22,12 @@ pipeline{
             agent{
                 label 'slave2'
             }
-            steps{
-                when{
+            when{
                     expression{return params.ENV == 'dev' && params.BUILD}
                          
                 }
+            steps{
+                
                 echo "Groovy ----> ${params.ENV}"
                 sh '''
                    echo "shell ------> ${ENV}"
@@ -37,12 +38,13 @@ pipeline{
             agent{
                 label 'slave2'
             }
-            steps{
-                when{
+            when{
                     
                     expression{return params.ENV == 'Stagging'&& params.BUILD}
                     
                 }
+            steps{
+                
                 echo "Groovy ----> ${params.ENV}"
                 sh '''
                    echo "shell ------> ${ENV}"
@@ -53,10 +55,11 @@ pipeline{
             agent{
                 label 'slave2'
             }
-            steps{
-                when{
+            when{
                     expression{return params.ENV == 'test' && params.BUILD}
                 }
+            steps{
+                
                 echo "Groovy ----> ${params.ENV}"
                 sh '''
                    echo "shell ------> ${ENV}"
