@@ -3,6 +3,7 @@ pipeline {
     parameters {
 
         choice(name: 'BRANCH', choices: ['main','production'], description: 'Choose the environment to deploy ?')
+        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'wheather to deploy or not ?')
 
     }
 
@@ -40,6 +41,14 @@ pipeline {
                 sh '''
                     echo "SHELL ----> BRANCH: ${BRANCH}"
                 '''
+            }
+        }
+        stage('Deploy'){
+            when{
+                expression{return params.DEPLOY == true}
+            }
+            steps{
+                echo "Groovy ----> Deployed successfully...!"
             }
         }
     }
