@@ -28,7 +28,7 @@ pipeline{
         }
         stage('Build2'){
             when{
-                expression{return params.ENV == 'stagging'}
+                expression{return params.ENV == 'Stagging'}
             }
 
             steps{
