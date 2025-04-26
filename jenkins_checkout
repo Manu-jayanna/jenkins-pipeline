@@ -109,5 +109,18 @@ pipeline{
                 '''
             }
         }
+        stage('checkout3'){
+            steps{
+                git (branch: 'main', credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/my_repository.git')
+            }
+        }
+        stage('test'){
+            steps{
+                sh '''
+                   pwd
+                   ls -lrt
+                   git branch
+            }
+        }
     }
 }
