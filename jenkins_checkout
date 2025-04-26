@@ -115,12 +115,21 @@ pipeline{
             }
         }
         stage('test'){
+             agent{
+                label 'slave2'
+            }
+            when{
+                    expression{return params.ENV == 'dev' && params.BUILD}
+                         
+                }
             steps{
                 sh '''
                    pwd
                    ls -lrt
                    git branch
+                '''   
             }
+
         }
     }
 }
