@@ -1,11 +1,5 @@
 pipeline {
     agent any
-    parameters {
-
-        choice(name: 'BRANCH', choices: ['main','production'], description: 'Choose the environment to deploy ?')
-        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'wheather to deploy or not ?')
-
-    }
 
     stages {
         stage('CHECKOUT') {
