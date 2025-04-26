@@ -3,6 +3,7 @@ pipeline{
     parameters{
     
         choice(name: 'ENV', choices: ['dev', 'test', 'Stagging', 'production'], description: 'Choose the environment to deploy ?')
+        booleanParam defaultValue: true, description: 'Whether to deploy or not?', name: 'BUILD'
     }
 
     stages{
@@ -22,7 +23,8 @@ pipeline{
                 label 'slave2'
             }
             when{
-                expression{return params.ENV == 'dev'}
+                expression{return params.ENV == 'dev'
+                                  && params.BUILD == true}
             }
 
             steps{
@@ -37,7 +39,8 @@ pipeline{
                 label 'slave2'
             }
             when{
-                expression{return params.ENV == 'Stagging'}
+                expression{return params.ENV == 'Stagging'
+                                  && params.BUILD == true}
             }
 
             steps{
@@ -52,7 +55,8 @@ pipeline{
                 label 'slave2'
             }
             when{
-                expression{return params.ENV == 'test'}
+                expression{return params.ENV == 'test'
+                                  && params.BUILD == true}
             }
 
             steps{
@@ -67,7 +71,8 @@ pipeline{
                 label 'slave1'
             }
             when{
-                expression{return params.ENV == 'production'}
+                expression{return params.ENV == 'production'
+                                  && params.BUILD == true}
             }
 
             steps{
