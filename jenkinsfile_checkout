@@ -1,5 +1,5 @@
 pipeline{
-    agent none
+    agent any
     parameters{
     
         choice(name: 'ENV', choices: ['dev', 'test', 'Stagging', 'production'], description: 'Choose the environment to deploy ?')
