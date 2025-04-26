@@ -47,5 +47,35 @@ pipeline{
                 '''
             }
         }
+        stage('Build3'){
+            agent{
+                label 'slave2'
+            }
+            when{
+                expression{return params.ENV == 'test'}
+            }
+
+            steps{
+                echo "Groovy ----> ${params.ENV}"
+                sh '''
+                   echo "shell ------> ${ENV}"
+                '''
+            }
+        }
+        stage('Build4'){
+            agent{
+                label 'slave1'
+            }
+            when{
+                expression{return params.ENV == 'production'}
+            }
+
+            steps{
+                echo "Groovy ----> ${params.ENV}"
+                sh '''
+                   echo "shell ------> ${ENV}"
+                '''
+            }
+        }
     }
 }
