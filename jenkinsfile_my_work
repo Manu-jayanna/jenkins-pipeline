@@ -51,5 +51,13 @@ pipeline {
                 echo "Groovy ----> Deployed successfully...!"
             }
         }
+        stage('Deploy'){
+            when{
+                expression{return params.DEPLOY == false}
+            }
+            steps{
+                echo "Groovy ----> Deployed unsuccessfull...!"
+            }
+        }
     }
 }
