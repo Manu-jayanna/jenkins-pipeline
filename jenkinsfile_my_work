@@ -67,7 +67,7 @@ pipeline {
             }
         }
 
-        stage('BUILD_MAIN') {
+        stage('BUILD') {
 
             when {
                 expression { 
@@ -82,7 +82,7 @@ pipeline {
             }
         }
 
-        stage('BUILD_PROD') {
+        stage('BUILD1') {
 
             when {
                 expression { return params.BRANCH == 'production' }
@@ -94,7 +94,7 @@ pipeline {
                 '''
             }
         }
-        stage('Deploy1'){
+        stage('Deploy-1'){
             when{
                 expression{return params.DEPLOY == true}
             }
@@ -102,7 +102,7 @@ pipeline {
                 echo "Groovy ----> Deployed successfully...!"
             }
         }
-        stage('Deploy2'){
+        stage('Deploy-2'){
             when{
                 expression{return params.DEPLOY == false}
             }
