@@ -43,7 +43,7 @@ pipeline {
                 '''
             }
         }
-        stage('Deploy'){
+        stage('Deploy1'){
             when{
                 expression{return params.DEPLOY == true}
             }
@@ -51,7 +51,7 @@ pipeline {
                 echo "Groovy ----> Deployed successfully...!"
             }
         }
-        stage('Deploy'){
+        stage('Deploy2'){
             when{
                 expression{return params.DEPLOY == false}
             }
