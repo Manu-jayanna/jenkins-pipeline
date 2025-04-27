@@ -1,4 +1,38 @@
-boolean stageBuild = false
+// boolean stageBuild = false
+
+// pipeline {
+//     agent any
+//     stages{
+//         stage('checkout'){
+//             steps{
+//                 git(branch: 'production', credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/jenkins-pipeline.git' )
+//             }
+//         }
+//         stage('Build'){
+//             when{
+//                 expression{return stageBuild == true}
+//             }
+//             steps{
+                
+//                 sh '''
+//                   git branch
+//                   pwd
+//                   ls -lrt
+//                 '''    
+//             }
+//         }
+//         stage('test'){
+//             steps{
+//                 echo "This is test stage"
+//             }
+//         }
+//     }
+// }  
+
+// USING IF STATEMENT
+// def or datatypes(like boolean,int,string etc)
+
+boolean stageBuild = true
 
 pipeline {
     agent any
@@ -9,16 +43,18 @@ pipeline {
             }
         }
         stage('Build'){
-            when{
-                expression{return stageBuild == true}
-            }
             steps{
-                
-                sh '''
-                  git branch
-                  pwd
-                  ls -lrt
-                '''    
+                script{
+                    if (stageBuild){
+                        sh '''
+                           git branch
+                           pwd
+                           ls -lrt
+                        '''
+                    }
+
+                    sh 'pwd; ls -lrt'
+                }        
             }
         }
         stage('test'){
@@ -27,4 +63,4 @@ pipeline {
             }
         }
     }
-}    
+}
