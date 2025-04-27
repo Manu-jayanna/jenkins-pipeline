@@ -10,7 +10,8 @@ pipeline {
     // }
     options{
         timeout(time: 10, unit: 'SECONDS')
-        buildDiscarder(logRotator(numToKeepStr: '3', daysToKeepStr: '10')) 
+        buildDiscarder(logRotator(numToKeepStr: '3', daysToKeepStr: '10'))
+        disableConcurrentBuilds() 
     }
     stages{
         stage('checkout'){
