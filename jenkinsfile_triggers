@@ -14,5 +14,17 @@ pipeline {
                 git(branch: 'production', credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/jenkins-pipeline.git' )
             }
         }
+        stage('Build'){
+            when{
+                expression{return branch == 'main'}
+            }
+            steps{
+                sh '''
+                  git branch
+                  pwd
+                  ls -lrt
+                '''  
+            }
+        }
     }
 }    
