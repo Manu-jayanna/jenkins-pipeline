@@ -1,0 +1,33 @@
+boolean stageBuild = true
+
+pipeline {
+    agent any
+    stages{
+        stage('checkout'){
+            steps{
+                git(branch: 'production', credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/jenkins-pipeline.git' )
+            }
+        }
+        stage('Build'){
+            when{
+                expression{return stageBuild == true}
+            }
+            steps{
+                
+                sh '''
+                  git branch
+                  pwd
+                  ls -lrt
+                  exit 1
+                '''
+                
+                
+            }
+        }
+        stage('test'){
+            steps{
+                echo "This is test stage"
+            }
+        }
+    }
+}    
