@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+    // triggers{
+    //     pollSCM('* * * * *')
+    //     upstream(
+    //         upstreamProjects: 'my_test',
+    //         threshold: hudson.model.Result.SUCCESS
+    //     )
+    //     cron('H/1 * * * *')
+    // }
+    stages{
+        stage('checkout'){
+            steps{
+                git(branch: 'production', credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/jenkins-pipeline.git' )
+            }
+        }
+        stage('Build'){
+            steps{
+                script{
+                    try{
+                    sh '''
+                        git branch
+                        pwd
+                        ls -lrt
+                    '''
+                    exit 1
+                    }catch(err){
+                       echo "cought an error : ${err}"
+                    }
+                } 
+            }
+        }
+        stage('test'){
+            steps{
+                echo "This is test stage"
+            }
+        }
+    }
+}    
