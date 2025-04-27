@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+    stages{
+        stage('checkout'){
+            steps{
+                git(branch: 'production', credentialsId: 'my_github', url: 'https://github.com/Manu-jayanna/jenkins-pipeline.git' )
+            }
+        }
+        stage('Build'){
+            steps{
+                
+                sh 'pwd; git branch; ls -lrt'
+            }
+        }
+        stage('test'){
+            steps{
+                echo "This is test stage"
+            }
+        }
+    }
+    post{
+        success{
+            echo "post action on success"
+        }
+        failure{
+            echo "post action on fail"
+        }
+        always{
+            echo "post action on always"
+        }
+    }
+}    
