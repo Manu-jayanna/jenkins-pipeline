@@ -15,9 +15,6 @@ pipeline {
             }
         }
         stage('Build'){
-            when{
-                expression{return branch == 'main'}
-            }
             steps{
                 sh '''
                   git branch
