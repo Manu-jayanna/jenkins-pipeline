@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    triggers{
+        pollSCM('* * * * *')
+    }
     parameters {
 
         choice(name: 'BRANCH', choices: ['main','production'], description: 'Choose the environment to deploy ?')

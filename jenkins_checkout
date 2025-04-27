@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    triggers{
+        
+    }
     // parameters{
     
     //     choice(name: 'ENV', choices: ['dev', 'test', 'Stagging', 'production'], description: 'Choose the environment to deploy ?')
@@ -126,7 +129,7 @@ pipeline{
                 sh '''
                    pwd
                    ls -lrt
-                   git branch
+                   
                 '''   
             }
 
