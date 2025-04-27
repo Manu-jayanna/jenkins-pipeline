@@ -1,4 +1,4 @@
-boolean stageBuild = true
+boolean stageBuild = false
 
 pipeline {
     agent any
