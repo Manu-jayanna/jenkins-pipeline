@@ -21,9 +21,9 @@ pipeline {
                   git branch
                   pwd
                   ls -lrt
-                  
+                  exit 1
                 '''
-                exit 1
+                
                 } 
             }
         }
