@@ -32,7 +32,7 @@
 // USING IF STATEMENT
 // def or datatypes(like boolean,int,string etc)
 
-boolean stageBuild = true
+boolean stageBuild = false
 
 pipeline {
     agent any
