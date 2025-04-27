@@ -9,7 +9,7 @@ pipeline {
         stage('Build'){
             steps{
                 
-                sh 'pwd; git branch; ls -lrt; exit 1'
+                sh 'pwd; git branch; ls -lrt; exit 0'
             }
         }
         stage('test'){
