@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Build'){
             steps{
-                catchError(stageResult: 'FAILURE', buildResult: 'FAILURE'){
+                catchError(stageResult: 'SUCCESS', buildResult: 'FAILURE'){
                 sh '''
                   git branch
                   pwd
