@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    triggers{
+        pollSCM('* * * * *')
+        upstream(
+            upstreamProjects: 'my_test',
+            threshold: hudson.model.Result.SUCCESS
+        )
+        cron('H/1 * * * *')
+    }
