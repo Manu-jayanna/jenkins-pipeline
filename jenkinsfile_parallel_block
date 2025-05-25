@@ -34,7 +34,7 @@ pipeline{
                 }
             }    
         }
-        stage('Test'){
+        stage('test'){
             steps{
 
                 echo "This is a Test stage"
