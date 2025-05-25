@@ -67,7 +67,9 @@
 
 // USING TRY-CATCH BLOCK- TO RUN, IF BUILD1 - SUCCESS ----> RESULT BUILD2 RUN OR IF BUILD1 - FAIL -----> BUILD3 RUN
 
+
 boolean stageBuild = true
+
 
 pipeline {
     agent any
