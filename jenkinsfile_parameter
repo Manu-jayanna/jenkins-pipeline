@@ -1,6 +1,6 @@
 pipeline{
     agent{
-        label "slave 2"
+        label "slave2"
     }
     parameters{
         booleanParam defaultValue: true, description: 'Whether to deploy or not?', name: 'Build'
