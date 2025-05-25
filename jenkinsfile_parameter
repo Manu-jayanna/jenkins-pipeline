@@ -1,5 +1,7 @@
 pipeline{
-    agent any
+    agent{
+        label "slave 1"
+    }
     parameters{
         booleanParam defaultValue: true, description: 'Whether to deploy or not?', name: 'Build'
         choice choices: ['dev', 'test', 'Stagging', 'production'], description: 'Select env to deploy.', name: 'Select_env'
