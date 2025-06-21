@@ -29,6 +29,15 @@ pipeline{
             }
         }
 
+        stage('Deploy'){
+            
+            steps{
+
+                echo "This is a Test Deploy"
+                sleep 5
+            }
+        }
+
     }
     
 }
